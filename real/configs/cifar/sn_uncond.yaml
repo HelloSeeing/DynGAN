@@ -1,0 +1,5 @@
+inherit_from: configs/cifar/default.yaml
+training:
+  out_dir: output/cifar/sngan
+discriminator:
+  name: sngan_deep

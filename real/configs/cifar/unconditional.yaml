@@ -1,0 +1,5 @@
+inherit_from: configs/cifar/default.yaml
+training:
+  out_dir: output/cifar/unconditional
+  reg_type: real
+  reg_param: 0.01

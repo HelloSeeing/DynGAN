@@ -1,0 +1,38 @@
+generator:
+  nlabels: 100
+  name: dcgan_deep
+  conditioning: embedding
+discriminator:
+  nlabels: 100
+  name: dcgan_deep
+  conditioning: mask
+clusterer:
+  name: dyngan
+  kwargs: 
+    k0: 1
+    k_value: 100
+    delta: 0.1
+    tau: 0.05
+    lamb: 0.8
+    max_kmeans_iteration: 100
+    fe_type: discriminator
+    fe_kwargs:
+      res18_sup:
+        load_path: ../pretrained_feature_extractor_ckpts/resnet18-super-cifar10.pth
+      res18_simsiam:
+        backbone: resnet18_cifar_variant1
+        proj_layers: 2
+        load_path: ../pretrained_feature_extractor_ckpts/simsiam-cifar10-experiment-resnet18_cifar_variant1_0803234006.pth
+  detect_every: 1000
+inherit_from: configs/stl10/default.yaml
+training:
+  out_dir: output/stl/dyngan
+  reg_type: real
+  reg_param: 0.01
+  recluster_every: 20000
+  nworkers: 4
+  burnin_time: -1
+  inception_every: 10000
+  fid_every: 10000
+  sample_every: 5000
+  label_every: 5000

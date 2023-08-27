@@ -1,0 +1,14 @@
+generator:
+  nlabels: 20
+  conditioning: embedding
+discriminator:
+  nlabels: 20
+  conditioning: mask
+clusterer:
+  name: selfcondgan
+  kwargs: 
+    k_value: 20
+inherit_from: configs/cifar/default.yaml
+training:
+  out_dir: output/cifar/selfcondgan
+  recluster_every: 25000
